@@ -1,17 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import {} from "../../assets/Pattern.png";
 import { UserList } from "../../types";
+import { DarkModeContext } from "../../state/darkModeContext/darkModeContext";
 
 interface UserDetails {
   userDetails: UserList;
 }
 
 interface CardProps extends UserDetails {
-  darkMode: boolean;
   key: number;
 }
 
-const UserCard = ({ userDetails, darkMode, key }: CardProps): JSX.Element => {
+const UserCard = ({ userDetails, key }: CardProps): JSX.Element => {
+  const { state } = useContext(DarkModeContext);
+  const { darkMode } = state;
+
   return (
     <div
       key={key}

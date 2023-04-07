@@ -1,11 +1,14 @@
 import { FaSearch } from "react-icons/fa";
-import { useState, useContext } from "react";
+import { useState, useContext, FC } from "react";
 import { UserContext } from "../../state/index";
 import { CLEAR_USER, FILTER_USER } from "../../state/userTypes";
+import { DarkModeContext } from "../../state/darkModeContext/darkModeContext";
 
-const Navbar = (props: any) => {
+const Navbar: FC = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState<string>("");
   const { dispatch } = useContext(UserContext);
+  const { state } = useContext(DarkModeContext);
+  const { darkMode } = state;
 
   const handleChange = (e: any) => {
     setSearchValue(e.target.value);
@@ -18,7 +21,7 @@ const Navbar = (props: any) => {
   return (
     <div
       className={`flex items-center h-24 ${
-        props.darkMode ? "bg-custome-Darkbg-Color" : "bg-custome-bg-whiteColor"
+        darkMode ? "bg-custome-Darkbg-Color" : "bg-custome-bg-whiteColor"
       }  `}
     >
       <div className="flex items-center justify-between py-5 pr-12 w-full">
@@ -26,7 +29,7 @@ const Navbar = (props: any) => {
           <p
             data-testid="team-members"
             className={` text-xl font-semibold ${
-              props.darkMode
+              darkMode
                 ? "text-custome-bg-color"
                 : "text-custome-text-blackColor"
             }`}
@@ -38,7 +41,7 @@ const Navbar = (props: any) => {
           <input
             data-testid="searchInputId"
             className={`py-1 border rounded-lg px-2  ${
-              props.darkMode
+              darkMode
                 ? "bg-custome-text-blackColor placeholder-gray-500 text-white"
                 : "bg-custome-bg-colo placeholder-gray-500 "
             }`}

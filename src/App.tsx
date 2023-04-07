@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserState from "./state";
 import Home from "./pages/home";
+import DarkModeState from "./state/darkModeContext/darkModeContext";
+import { FC } from "react";
 
-function App() {
+const App: FC = (): JSX.Element => {
   return (
-    <div>
+    <DarkModeState>
       <UserState>
         <BrowserRouter>
           <Routes>
@@ -12,8 +14,8 @@ function App() {
           </Routes>
         </BrowserRouter>
       </UserState>
-    </div>
+    </DarkModeState>
   );
-}
+};
 
 export default App;

@@ -3,14 +3,14 @@ import { FiUsers } from "react-icons/fi";
 import { AiOutlineInbox } from "react-icons/ai";
 import { BsMoonFill } from "react-icons/bs";
 import { BiCube } from "react-icons/bi";
-import { MenuList, TogglePropsType } from "../../types";
-import { useState } from "react";
+import { MenuList } from "../../types";
+import { FC, useContext, useState } from "react";
+import { DarkModeContext } from "../../state/darkModeContext/darkModeContext";
 
-const Sidebar = ({
-  toggleDarkMode,
-  darkMode,
-}: TogglePropsType): JSX.Element => {
+const Sidebar: FC = (): JSX.Element => {
   const [selectedMenu, setSelectedMenu] = useState<number>(1);
+  const { toggleMode, state } = useContext(DarkModeContext);
+  const { darkMode } = state;
 
   // menuList objects
   const menuList: MenuList[] = [
@@ -115,7 +115,7 @@ const Sidebar = ({
       <div>{renderMenuList()}</div>
       <ul>
         <li
-          onClick={toggleDarkMode}
+          onClick={toggleMode}
           className={`flex items-center py-2 px-5 ${
             darkMode ? "bg-custome-blue-color" : ""
           }  cursor-pointer rounded-custome-border-radius`}

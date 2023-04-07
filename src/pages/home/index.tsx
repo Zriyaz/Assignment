@@ -1,32 +1,30 @@
 import Sidebar from "../../components/sidebar";
 import Navbar from "../../components/navbar";
-import { useState } from "react";
+import { FC, useContext } from "react";
 import UserCardList from "../../components/userList/UserList";
+import { DarkModeContext } from "../../state/darkModeContext/darkModeContext";
 
-const Home = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = (): void => {
-    setDarkMode((prevDarkMode) => !prevDarkMode);
-  };
+const Home: FC = (): JSX.Element => {
+  const { state } = useContext(DarkModeContext);
+  const { darkMode } = state;
 
   return (
     <div>
-      <Navbar darkMode={darkMode} />
+      <Navbar />
       <div className="flex h-screen w-full">
         <div
           className={`${
             darkMode ? "bg-custome-Darkbg-Color" : "bg-custome-bg-whiteColor"
           } `}
         >
-          <Sidebar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <Sidebar />
         </div>
         <div
           className={`${
             darkMode ? "bg-custome-Darkbg-Color" : "bg-custome-bg-whiteColor"
           } w-full h-full`}
         >
-          <UserCardList darkMode={darkMode} />
+          <UserCardList />
         </div>
       </div>
     </div>

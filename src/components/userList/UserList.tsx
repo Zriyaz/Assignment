@@ -1,13 +1,13 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { UserContext } from "../../state/index";
 import { UserList } from "../../types";
 import UserCard from "../userCard";
+import { DarkModeContext } from "../../state/darkModeContext/darkModeContext";
 
-type Props = {
-  darkMode: boolean;
-};
-
-const UserCardList = ({ darkMode }: Props) => {
+const UserCardList: FC = (): JSX.Element => {
+  const {
+    state: { darkMode },
+  } = useContext(DarkModeContext);
   const { state } = useContext(UserContext);
   const { users, filtered } = state;
   return (
@@ -18,10 +18,10 @@ const UserCardList = ({ darkMode }: Props) => {
     >
       {filtered === null
         ? users.map((user: UserList) => (
-            <UserCard userDetails={user} darkMode={darkMode} key={user.id} />
+            <UserCard userDetails={user} key={user.id} />
           ))
         : filtered.map((user: UserList) => (
-            <UserCard userDetails={user} darkMode={darkMode} key={user.id} />
+            <UserCard userDetails={user} key={user.id} />
           ))}
     </div>
   );

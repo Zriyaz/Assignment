@@ -27,3 +27,11 @@ export interface ActionType {
   type: string;
   payload?: string;
 }
+
+// export interface InitialStateType {
+//   darkMode: boolean;
+// }
+
+// export interface ActionType {
+//   type: string;
+// }
